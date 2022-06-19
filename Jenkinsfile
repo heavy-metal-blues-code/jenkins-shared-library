@@ -1,9 +1,10 @@
 @Library(value="jenkins-shared-library@master", changelog=false) _
 
-node {
+node("controller") {
     stage('Main') {
-        checkout scm
-        echo 'This is the Jenkins Shared Library'
+        freeNodesAndExecutors().each { nodeName, numberExecutors ->
+            println "Free node name: ${nodeName} and its number of executors: ${numberExecutors}"
+        }
     }
 }
 
